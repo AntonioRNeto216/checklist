@@ -1,3 +1,4 @@
+import 'package:checklist/constants.dart';
 import 'package:flutter/material.dart';
 
 const _textoBotao = "Confirmar";
@@ -18,14 +19,14 @@ class BotaoConfirmar extends StatelessWidget {
         height: size.height * 0.075881,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.grey[500],
+          color: corBotaoConfirmar,
           borderRadius: BorderRadius.circular(20.0),
         ),
         alignment: Alignment.center,
         child: Text(
           _textoBotao,
           style: TextStyle(
-            color: Colors.white,
+            color: corTextoBotaoConfirmar,
             fontSize: size.height * 0.021341,
           ),
         ),

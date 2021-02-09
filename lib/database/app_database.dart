@@ -10,6 +10,5 @@ Future<Database> getDatabase() async {
       db.execute(NotaDao.tabela);
     },
     version: 1,
-    //onDowngrade: onDatabaseDowngradeDelete,
   );
 }

@@ -1,8 +1,12 @@
 import 'package:checklist/components/alerta.dart';
+import 'package:checklist/constants.dart';
 import 'package:checklist/models/modelo_nota.dart';
 import 'package:flutter/material.dart';
 
 const _cardElevation = 4.0;
+const _tituloAlerta = "Terminou!";
+const _descricao = "Concluiu sua nota?";
+const _iconeCard = Icons.check_circle_outline;
 
 class Nota extends StatelessWidget {
   final ModeloNota modeloNota;
@@ -18,12 +22,12 @@ class Nota extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Card(
       elevation: _cardElevation,
-      shadowColor: Colors.black,
+      shadowColor: shadow,
       child: ListTile(
         title: Text(
           this.modeloNota.titulo,
           style: TextStyle(
-            color: Colors.black,
+            color: corTexto,
             fontSize: size.height * 0.028455,
             fontWeight: FontWeight.bold,
           ),
@@ -34,7 +38,7 @@ class Nota extends StatelessWidget {
             Text(
               this.modeloNota.descricao,
               style: TextStyle(
-                color: Colors.black,
+                color: corTexto,
                 fontSize: size.height * 0.0165989,
               ),
             ),
@@ -44,20 +48,16 @@ class Nota extends StatelessWidget {
               width: double.infinity,
               child: IconButton(
                 onPressed: () {
-                  return showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Alerta(
-                        titulo: "Excluir",
-                        mensagem: "Deseja excluir sua nota?",
-                        onPressed: this.onTapExcluir,
-                      );
-                    }
+                  return alerta(
+                    context,
+                    _tituloAlerta,
+                    _descricao,
+                    this.onTapExcluir,
                   );
                 },
-                iconSize: size.height * 0.0284553,
-                icon: Icon(Icons.delete_forever_outlined),
-                color: Colors.red[300],
+                iconSize: size.height * 0.03,
+                icon: Icon(_iconeCard),
+                color: corCheck,
               ),
             ),
           ],

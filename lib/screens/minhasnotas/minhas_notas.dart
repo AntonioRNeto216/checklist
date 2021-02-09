@@ -1,10 +1,23 @@
 import 'package:checklist/components/alerta.dart';
+import 'package:checklist/constants.dart';
 import 'package:checklist/database/dao/nota_dao.dart';
 import 'package:checklist/models/modelo_nota.dart';
 import 'package:checklist/screens/adicionarnotas/adicionar_notas.dart';
 import 'package:checklist/screens/minhasnotas/components/nota.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+const _tituloAlerta = "Sair";
+const _descricaoAlerta = "Deseja sair do CheckList?";
+
+const _tituloAppBar = "Minhas Notas";
+const _iconeAppBar = Icons.add;
+const _fraseIconeAppBar = "Adicionar Nota";
+
+const _imagemListaVazia = "assets/images/lista_vazia.png";
+const _textoListaVazia = "Nenhuma nota criada até o momento";
+
+const _erro = "ERRO NÃO CONHECIDO!!!";
 
 class MinhasNotas extends StatefulWidget {
   @override
@@ -19,35 +32,30 @@ class _MinhasNotasState extends State<MinhasNotas> {
     Size size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () {
-        return showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return Alerta(
-                titulo: "Sair",
-                mensagem: "Deseja sair do CheckList?",
-                onPressed: () {
-                  SystemChannels.platform.invokeMethod("SystemNavigator.pop");
-                });
-          },
+        return alerta(
+          context,
+          _tituloAlerta,
+          _descricaoAlerta,
+          () => SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
         );
       },
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: corAppBar,
           automaticallyImplyLeading: false,
           title: Text(
-            "Minhas Notas",
+            _tituloAppBar,
             style: TextStyle(
-              color: Colors.black,
+              color: corTexto,
               fontWeight: FontWeight.bold,
-              fontSize: 18.0,
+              fontSize: size.height * 0.0213414,
             ),
           ),
           actions: [
             Padding(
               padding: EdgeInsets.only(
-                right: 16.0,
+                right: size.width * 0.038889,
               ),
               child: InkWell(
                 onTap: () {
@@ -61,15 +69,15 @@ class _MinhasNotasState extends State<MinhasNotas> {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.add,
-                      color: Colors.black,
-                      size: 24.0,
+                      _iconeAppBar,
+                      color: corIcone,
+                      size: size.height * 0.0284553,
                     ),
                     Text(
-                      "Adicionar Nota",
+                      _fraseIconeAppBar,
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12.0,
+                        color: corTexto,
+                        fontSize: size.height * 0.0142276,
                       ),
                     ),
                   ],
@@ -87,8 +95,8 @@ class _MinhasNotasState extends State<MinhasNotas> {
               case ConnectionState.waiting:
                 return Center(
                   child: CircularProgressIndicator(
-                    backgroundColor: Colors.grey[200],
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                    backgroundColor: backgroundCircularProgress,
+                    valueColor: AlwaysStoppedAnimation<Color>(corIcone),
                   ),
                 );
               case ConnectionState.active:
@@ -120,11 +128,11 @@ class _MinhasNotasState extends State<MinhasNotas> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset("assets/images/lista_vazia.png"),
+                      Image.asset(_imagemListaVazia),
                       Text(
-                        "Nenhuma nota criada até o momento",
+                        _textoListaVazia,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: corTexto,
                           fontSize: size.height * 0.0189702,
                           fontWeight: FontWeight.bold,
                         ),
@@ -133,17 +141,8 @@ class _MinhasNotasState extends State<MinhasNotas> {
                   );
                 }
             }
-            return Center(child: Text("ERRO NÃO CONHECIDO!!!"));
+            return Center(child: Text(_erro));
           },
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          elevation: 2,
-          backgroundColor: Colors.black54,
-          child: Icon(
-            Icons.lightbulb_outline,
-            color: Colors.white,
-          ),
         ),
       ),
     );

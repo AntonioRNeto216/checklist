@@ -1,17 +1,17 @@
 import 'dart:ui';
-
+import 'package:checklist/constants.dart';
 import 'package:flutter/material.dart';
+
+const _iconeInput = Icons.label_important_outline;
 
 class Input extends StatelessWidget {
   final TextEditingController controller;
   final String label;
-  //final double height;
 
   const Input({
     Key key,
     @required this.controller,
     @required this.label,
-    //@required this.height,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class Input extends StatelessWidget {
       ),
       child: TextField(
         maxLines: null,
-        cursorColor: Colors.black,
+        cursorColor: corInput,
         controller: this.controller,
         textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
@@ -32,23 +32,23 @@ class Input extends StatelessWidget {
           ),
           counterText: "",
           prefixIcon: Icon(
-            Icons.label_important_outline,
-            color: Colors.black,
+            _iconeInput,
+            color: corIcone,
           ),
           labelText: this.label,
           labelStyle: TextStyle(
-            color: Colors.black,
+            color: corTexto,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
             borderSide: BorderSide(
-              color: Colors.black,
+              color: corInput,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
             borderSide: BorderSide(
-              color: Colors.black,
+              color: corInput,
             ),
           ),
         ),

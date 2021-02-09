@@ -1,40 +1,37 @@
+import 'package:checklist/constants.dart';
 import 'package:flutter/material.dart';
 
-class Alerta extends StatelessWidget {
-  final String titulo, mensagem;
-  final Function onPressed;
+const _botaoEsquerdo = "Cancelar";
+const _botaoDireito = "Continuar";
 
-  const Alerta({
-    @required this.mensagem,
-    @required this.titulo,
-    @required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(this.titulo),
-      content: Text(this.mensagem),
-      actions: [
-        TextButton(
-          child: Text(
-            "Cancelar",
-            style: TextStyle(color: Colors.black),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        TextButton(
-          child: Text(
-            "Continuar",
-            style: TextStyle(
-              color: Colors.black,
+alerta(BuildContext context, String titulo, String mensagem, Function onPressed) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(titulo),
+        content: Text(mensagem),
+        actions: [
+          TextButton(
+            child: Text(
+              _botaoEsquerdo,
+              style: TextStyle(color: corTexto),
             ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          onPressed: this.onPressed,
-        ),
-      ],
-    );
-  }
+          TextButton(
+            child: Text(
+              _botaoDireito,
+              style: TextStyle(
+                color: corTexto,
+              ),
+            ),
+            onPressed: onPressed,
+          ),
+        ],
+      );
+    },
+  );
 }

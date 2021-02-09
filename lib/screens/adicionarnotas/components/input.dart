@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
@@ -20,10 +22,15 @@ class Input extends StatelessWidget {
         bottom: size.height * 0.0284553,
       ),
       child: TextField(
-        maxLines: 1,
+        maxLines: null,
         cursorColor: Colors.black,
         controller: this.controller,
+        textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.only(
+            bottom: size.height * 0.05,
+          ),
+          counterText: "",
           prefixIcon: Icon(
             Icons.label_important_outline,
             color: Colors.black,

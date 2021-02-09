@@ -23,12 +23,11 @@ class _MinhasNotasState extends State<MinhasNotas> {
           context: context,
           builder: (BuildContext context) {
             return Alerta(
-              titulo: "Sair",
-              mensagem: "Deseja sair do CheckList?",
-              onPressed: () {
-                SystemChannels.platform.invokeMethod("SystemNavigator.pop");
-              }
-            );
+                titulo: "Sair",
+                mensagem: "Deseja sair do CheckList?",
+                onPressed: () {
+                  SystemChannels.platform.invokeMethod("SystemNavigator.pop");
+                });
           },
         );
       },
@@ -136,6 +135,15 @@ class _MinhasNotasState extends State<MinhasNotas> {
             }
             return Center(child: Text("ERRO NÃO CONHECIDO!!!"));
           },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          elevation: 2,
+          backgroundColor: Colors.black54,
+          child: Icon(
+            Icons.lightbulb_outline,
+            color: Colors.white,
+          ),
         ),
       ),
     );

@@ -55,8 +55,9 @@ class _AdicionarNotasState extends State<AdicionarNotas> {
             label: _labelInputDois,
             controller: this._controllerDescricao,
           ),
-          BotaoConfirmar(
-            onTap: () {
+          BotaoConfirmar(onTap: () {
+            if (this._controllerTitulo.text != "" &&
+                this._controllerDescricao.text != "") {
               final ModeloNota novaNota = ModeloNota(
                 0,
                 this._controllerTitulo.text,
@@ -66,8 +67,8 @@ class _AdicionarNotasState extends State<AdicionarNotas> {
                   ._dao
                   .salvar(novaNota)
                   .then((value) => Navigator.pop(context));
-            },
-          ),
+            }
+          }),
         ],
       ),
     );

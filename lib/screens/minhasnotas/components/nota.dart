@@ -1,32 +1,29 @@
+import 'package:checklist/components/alerta.dart';
+import 'package:checklist/models/modelo_nota.dart';
 import 'package:flutter/material.dart';
 
 const _cardElevation = 4.0;
-const _shadowColor = Colors.black;
-const _tituloCard = Colors.black;
-const _bottomTexto = "Clique para saber mais";
-const _subtituloColor = Colors.grey;
 
 class Nota extends StatelessWidget {
-  final String titulo, descricao;
+  final ModeloNota modeloNota;
+  final Function onTapExcluir;
 
-  const Nota({
-    Key key,
-    @required this.titulo,
-    @required this.descricao,
-  }) : super(key: key);
+  Nota({
+    @required this.modeloNota,
+    @required this.onTapExcluir,
+  });
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Card(
       elevation: _cardElevation,
-      shadowColor: _shadowColor,
+      shadowColor: Colors.black,
       child: ListTile(
-        onTap: () {},
         title: Text(
-          this.titulo,
+          this.modeloNota.titulo,
           style: TextStyle(
-            color: _tituloCard,
+            color: Colors.black,
             fontSize: size.height * 0.028455,
             fontWeight: FontWeight.bold,
           ),
@@ -34,36 +31,37 @@ class Nota extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextoCard(texto: this.descricao),
-            SizedBox(height: size.height * 0.03794),
+            Text(
+              this.modeloNota.descricao,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: size.height * 0.0165989,
+              ),
+            ),
+            SizedBox(height: size.height * 0.038),
             Container(
               alignment: Alignment.bottomRight,
               width: double.infinity,
-              child: TextoCard(texto: _bottomTexto),
-            )
+              child: IconButton(
+                onPressed: () {
+                  return showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Alerta(
+                        titulo: "Excluir",
+                        mensagem: "Deseja excluir sua nota?",
+                        onPressed: this.onTapExcluir,
+                      );
+                    }
+                  );
+                },
+                iconSize: size.height * 0.0284553,
+                icon: Icon(Icons.delete_forever_outlined),
+                color: Colors.red[300],
+              ),
+            ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class TextoCard extends StatelessWidget {
-  final String texto;
-
-  const TextoCard({
-    Key key,
-    @required this.texto,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Text(
-      this.texto,
-      style: TextStyle(
-        color: _subtituloColor,
-        fontSize: size.height * 0.0165989,
       ),
     );
   }

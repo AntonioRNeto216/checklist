@@ -1,4 +1,4 @@
-import 'package:checklist/components/scaffold_com_bottom_bar.dart';
+import 'package:checklist/screens/minhasnotas/minhas_notas.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Main",
       ),
-      home: ScaffoldComBottomBar(pagina: 0),
+      home: MinhasNotas(),
     );
   }
 }

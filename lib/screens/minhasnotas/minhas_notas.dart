@@ -55,7 +55,7 @@ class _MinhasNotasState extends State<MinhasNotas> {
           actions: [
             Padding(
               padding: EdgeInsets.only(
-                right: size.width * 0.038889,
+                right: 16, // constante
               ),
               child: InkWell(
                 onTap: () {
@@ -124,20 +124,22 @@ class _MinhasNotasState extends State<MinhasNotas> {
                     },
                   );
                 } else {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(_imagemListaVazia),
-                      Text(
-                        _textoListaVazia,
-                        style: TextStyle(
-                          color: corTexto,
-                          fontSize: size.height * 0.0189702,
-                          fontWeight: FontWeight.bold,
+                  return Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(_imagemListaVazia),
+                        Text(
+                          _textoListaVazia,
+                          style: TextStyle(
+                            color: corTexto,
+                            fontSize: size.height * 0.0189702,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 }
             }

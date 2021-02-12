@@ -129,7 +129,11 @@ class _MinhasNotasState extends State<MinhasNotas> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(_imagemListaVazia),
+                        Image.asset(
+                          _imagemListaVazia,
+                          height: size.height * 0.414973,
+                          width: size.width * 0.850694,
+                        ),
                         Text(
                           _textoListaVazia,
                           style: TextStyle(
